@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 
 // Get all quotes
 const getQuotes = async (req, res) => {
-    const quotes = await Quote.find({ username }).sort({ createdAt: -1});
+    const username = req.params.username
+    const quotes = await Quote.find({author: username }).sort({ createdAt: -1});
     
-    res.status(200).json(quotes);
+    res.status(200).json({quotes});
 }
 
 // Get one quote

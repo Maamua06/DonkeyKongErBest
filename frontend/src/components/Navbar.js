@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+// Import hooks
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 
 const Nav = styled.nav`
@@ -21,7 +26,7 @@ const NavItem = styled.li`
   margin-right: 20px;
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   color: white;
   text-decoration: none;
   &:hover {
@@ -29,20 +34,39 @@ const NavLink = styled.a`
   }
 `;
 
+
+
 const Navbar = () => {
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
+
     return ( 
         <Nav>
-        <NavBrand>Quotes</NavBrand>
+        <NavBrand>Quotes { user && <span>- {user.username}</span>}</NavBrand>
         <NavMenu>
           <NavItem>
-            <NavLink href="/">Logo</NavLink>
+          <NavLink to="/">Quotes</NavLink>
+          </NavItem>
+          {user &&
+          <>
+            <NavItem>
+              <NavLink to="/sign-in" onClick={logout}>Logout</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/home/:user">Your Quotes</NavLink>
+            </NavItem>
+          </>
+          }
+          {!user &&
+          <>   
+          <NavItem>
+            <NavLink to="/sign-up">Sign Up</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/">Quotes</NavLink>
+            <NavLink to="/sign-in">Login</NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink href="/Sign-in">Login</NavLink>
-          </NavItem>
+          </>
+          }
         </NavMenu>
       </Nav>
      );

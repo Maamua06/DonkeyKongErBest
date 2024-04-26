@@ -9,9 +9,10 @@ const router = Router();
 // Get one quote
 router.get('/random', getQuote)
 
-router.use(requireAuth);
 //get all quotes for the username
-router.get('/', getQuotes)
+router.get('/:username', getQuotes)
+
+router.use(requireAuth);
 
 
 // create a new quote

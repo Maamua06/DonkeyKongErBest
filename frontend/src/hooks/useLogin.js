@@ -7,7 +7,7 @@ export const useLogin = () => {
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
 
-    const login = async (username, password) => {
+    const login = async (username, password, onSuccess) => {
         setIsLoading(true)
         setError(null)
 
@@ -28,6 +28,9 @@ export const useLogin = () => {
 
             //update the authContext
             dispatch({type: 'LOGIN', payload: json})
+
+            // Call onSuccess callback to trigger redirect after successful login
+            onSuccess();
 
             // update loading state
             setIsLoading(false)
