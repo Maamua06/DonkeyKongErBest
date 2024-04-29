@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { useAuthContext } from "./useAuthContext";
+
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const useStartSide = () => {
-    const { user } = useAuthContext(); 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
     const [quotes, setQuotes] = useState(null);

@@ -22,18 +22,6 @@ const BoxText = styled.p`
 font-size: 16px;
 `;
 
-const DeleteButton = styled.span`
-  background-color: #ff0000; /* Red background */
-  color: #ffffff; /* White text */
-  padding: 8px 16px; /* Padding around the button text */
-  border: none; /* No border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Cursor style on hover */
-  font-size: 16px; /* Font size */
-  transition: background-color 0.3s ease; /* Smooth color transition on hover */
-  background-color: #cc0000; /* Darker red on hover */
-
-`;
 
 
 
@@ -53,7 +41,7 @@ const Home = () => {
 
     useEffect(() => {
         fecthLatestPosts();
-    },[user])
+    },[user, fecthLatestPosts])
 
     useEffect(() =>{
          console.log(quotes)

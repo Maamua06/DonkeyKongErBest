@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useQuotesContext } from "../hooks/useQuotesContext"
 import { useAuthContext } from '../hooks/useAuthContext'
 
@@ -13,44 +13,6 @@ const QuoteForm = () => {
     const [error, setError] = useState(null);
     const [emptyFields, setEmptyFields] = useState([]);
 
-    function Reload() {
-        const [submit, setSubmit] = useState(false)
-
-        const handleSubmit = async (e) => {
-            e.preventDefault()
-
-            if(!user) {
-                setError('You must be logged in')
-                return
-            }
-
-            const response = await fetch(`${apiUrl}/api/quotes`, {
-                method: 'POST',
-                body: JSON.stringify({author, body}),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization' : `Bearer ${user.token}`
-                }
-            })
-
-            const json = await response.json()
-
-            if (!response.ok) {
-                setError(json.error)
-                setEmptyFields(json.emptyFields)
-              }
-              if (response.ok) {
-                setAuthor('')
-                setBody('')
-                setError(null)
-                setEmptyFields([])
-                dispatch({type: 'CREATE_BLOG', payload: json})
-        
-                setSubmit(true);
-              }
-
-        }
-    }
 
     const handleSubmit = async (e) => {
         

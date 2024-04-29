@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-import { useAuthContext } from "../hooks/useAuthContext";
 
 // components
 import styled from "styled-components";
-import QuoteForm from '../components/QuoteForm';
+
 
 import { useStartSide } from '../hooks/useStartside';
 
@@ -22,7 +21,6 @@ const BoxText = styled.p`
 `;
 
 const StartQuote = () => {
-  const { user } = useAuthContext();
   const { startSide, quotes, isLoading, error } = useStartSide();
 
   useEffect(() => {
