@@ -9,9 +9,10 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import './App.css';
 
+
 function App() {
   const {user} = useAuthContext(); 
-
+  
   return (
     <div>
       <BrowserRouter>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuthContext } from "./useAuthContext";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export const useStartSide = () => {
     const { user } = useAuthContext(); 
     const [error, setError] = useState(null);
@@ -11,7 +13,7 @@ export const useStartSide = () => {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch(`http://localhost:5005/api/quotes/random`);
+        const response = await fetch(`${apiUrl}/api/quotes/random`);
         const json = await response.json();
 
         if (!response.ok) {

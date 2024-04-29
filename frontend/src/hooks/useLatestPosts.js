@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export const useLatestPosts = () => {
     const { user } = useAuthContext(); 
     const [error, setError] = useState(null);
@@ -12,7 +14,7 @@ export const useLatestPosts = () => {
         setError(null);
 
         if (user !== null) {
-            const response = await fetch(`http://localhost:5005/api/quotes/${user.username}`);
+            const response = await fetch(`${apiUrl}/api/quotes/${user.username}`);
             const json = await response.json();
 
             if (!response.ok) {

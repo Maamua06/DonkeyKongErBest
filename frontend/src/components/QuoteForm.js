@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useQuotesContext } from "../hooks/useQuotesContext"
 import { useAuthContext } from '../hooks/useAuthContext'
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const QuoteForm = () => {
     const {dispatch} = useQuotesContext();
     const { user } = useAuthContext();
@@ -22,7 +24,7 @@ const QuoteForm = () => {
                 return
             }
 
-            const response = await fetch('http://localhost:5005/api/quotes', {
+            const response = await fetch(`${apiUrl}/api/quotes`, {
                 method: 'POST',
                 body: JSON.stringify({author, body}),
                 headers: {
@@ -58,7 +60,7 @@ const QuoteForm = () => {
             return
         }
 
-        const response = await fetch('http://localhost:5005/api/quotes', {
+        const response = await fetch(`${apiUrl}/api/quotes`, {
             method: 'POST',
             body: JSON.stringify({author, body}),
             headers: {
