@@ -32,7 +32,7 @@ export const useLogin = () => {
             dispatch({type: 'LOGIN', payload: json})
 
             // Call onSuccess callback to trigger redirect after successful login
-            onSuccess();
+            onSuccess()
 
             // update loading state
             setIsLoading(false)
